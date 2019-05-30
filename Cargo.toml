@@ -22,14 +22,17 @@ libudev = ["serialport/libudev"]
 
 [dependencies]
 mio = "0.6"
-serialport = { version = "~3.2", default-features = false }
+serialport = { version = "3.2.1-alpha.0", default-features = false }
 
 [target.'cfg(unix)'.dependencies]
-nix = "0.11"
+nix = "0.14"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["commapi", "handleapi", "winbase"] }
 mio-named-pipes = "0.1.5"
+
+[patch.crates-io]
+serialport = { git = "https://gitlab.com/susurrus/serialport-rs.git", default-features = false, revision = "7994c0b" }
 
 [[example]]
 name = "serial_printline"
